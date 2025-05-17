@@ -1,0 +1,10 @@
+@startuml
+package "React App" {
+  [App.jsx] --> [NavBar]
+  [App.jsx] --> [Footer]
+  [App.jsx] --> [Conversation]
+
+  [Conversation] --> [MessageList]
+  [MessageList] --> [Message]
+}
+@enduml

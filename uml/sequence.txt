@@ -1,0 +1,20 @@
+@startuml
+actor User
+participant Conversation
+participant SpeechRecognition
+participant MessageList
+
+User -> Conversation: click mic button
+Conversation -> SpeechRecognition: startRecognition()
+SpeechRecognition --> Conversation: onstart()
+User -> SpeechRecognition: speak
+SpeechRecognition --> Conversation: onresult(transcript)
+Conversation -> Conversation: handleSend(transcript)
+Conversation -> MessageList: update messages prop
+SpeechRecognition --> Conversation: onend()
+Conversation -> SpeechRecognition: restart if listening
+User -> Conversation: click mic button (stop)
+Conversation -> SpeechRecognition: stop()
+SpeechRecognition --> Conversation: onend()
+Conversation --> User: update isListening state
+@enduml

@@ -1,0 +1,32 @@
+@startuml
+class App {
+  +renders NavBar
+  +renders Footer
+  +renders Conversation
+}
+
+class Conversation {
+  -messages: array
+  -isListening: boolean
+  -recognitionRef: ref
+  -shouldContinueListeningRef: ref
+  +handleSend(text)
+  +startRecognition()
+  +toggleListening()
+}
+
+class MessageList {
+  -messages: array (prop)
+  +render()
+}
+
+class Message {
+  -role: string (user | assistant)
+  -text: string
+  +render()
+}
+
+App --> Conversation
+Conversation --> MessageList
+MessageList --> Message
+@enduml
